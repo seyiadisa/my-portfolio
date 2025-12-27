@@ -30,6 +30,14 @@ body {
   min-height: 100vh;
 }
 
+html {
+  background-color: #0b0f14;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
