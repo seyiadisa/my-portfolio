@@ -1,44 +1,146 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import gsap from 'gsap'
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
+
+  tl.to('#heroLabel', {
+    opacity: 1,
+    y: 0,
+    duration: 1,
+    delay: 0.3,
+  })
+    .to(
+      '#heroTitle',
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        stagger: 0.1,
+      },
+      '-=0.6',
+    )
+    .to(
+      '#cyclingText',
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+      },
+      '-=0.8',
+    )
+    .to(
+      '#staticDescription',
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+      },
+      '-=0.6',
+    )
+    .to(
+      '#ctaContainer',
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+      },
+      '-=0.6',
+    )
+
+  const roles = ['Full-Stack Developer', 'Creative Technologist', 'AI Integration Specialist']
+
+  let currentIndex = 0
+
+  function cycleText() {
+    gsap.to('#cyclingText', {
+      duration: 0.8,
+      opacity: 0,
+      y: -20,
+      ease: 'power2.in',
+      onComplete: () => {
+        currentIndex = (currentIndex + 1) % roles.length
+        gsap.to('#cyclingText', {
+          duration: 0,
+          text: roles[currentIndex],
+          onComplete: () => {
+            gsap.to('#cyclingText', {
+              duration: 0.8,
+              opacity: 1,
+              y: 0,
+              ease: 'power2.out',
+            })
+          },
+        })
+      },
+    })
+  }
+
+  // Start cycling after initial load
+  setTimeout(() => {
+    setInterval(cycleText, 4000) // Change text every 4 seconds
+  }, 3000) // Wait 3 seconds before starting the cycle
+})
+</script>
 
 <template>
-  <div class="bg-effects">
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-  </div>
-  <p class="text-4xl font-bold mb-4">Welcome to My Portfolio</p>
+  <section class="flex flex-1 items-center relative px-4 md:px-16">
+    <div class="max-w-7xl mx-auto w-full">
+      <div id="heroContent" class="w-full">
+        <div id="heroLabel" class="text-sm tracking-[0.2em] uppercase mb-8 font-medium opacity-0">
+          Software Engineer
+        </div>
+
+        <h1
+          id="heroTitle"
+          class="font-display text-3xl md:text-5xl lg:text-6xl leading-relaxed mb-8 tracking-tight opacity-0"
+        >
+          OLUWASEYI<br />ADISA
+        </h1>
+
+        <div
+          id="cyclingText"
+          class="text-lg md:text-xl lg:text-2xl font-display mb-8 opacity-0 text-accent"
+        >
+          Full-Stack Developer
+        </div>
+
+        <div id="staticDescription" class="space-y-4 max-w-3xl mb-12 opacity-0">
+          <p class="leading-relaxed">
+            I create intelligent, user-focused applications that merge design, scalability, and
+            performance into meaningful digital experiences.
+          </p>
+          <p class="leading-relaxed">
+            I build AI-powered systems and modern APIs that help businesses and ideas scale
+            confidently.
+          </p>
+          <p class="leading-relaxed">I don't just write code — I craft solutions that last.</p>
+        </div>
+
+        <div id="ctaContainer" class="flex gap-8 flex-wrap opacity-0">
+          <a
+            href="#projects"
+            class="group relative inline-block px-10 py-4 border-3 lg:border-none font-medium uppercase tracking-widest text-sm transition-all duration-300 overflow-hidden hover:border-accent"
+          >
+            <span class="relative z-10 transition-colors duration-300">View Work</span>
+            <span
+              class="absolute inset-0 bg-accent w-0 group-hover:w-full transition-all duration-300"
+            ></span>
+          </a>
+          <a
+            href="#contact"
+            class="group relative inline-block px-10 py-4 border-3 lg:border-none border-accent text-accent font-medium uppercase tracking-[0.1em] text-sm transition-all duration-300 overflow-hidden"
+          >
+            <span class="relative group-hover:text-foreground z-10 transition-colors duration-300"
+              >Get in Touch</span
+            >
+            <span
+              class="absolute inset-0 bg-accent w-0 group-hover:w-full transition-all duration-300"
+            ></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
-
-<style scoped>
-.bg-effects {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.shape {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border-radius: 40%;
-  filter: blur(40px);
-  opacity: 0.35;
-  background: linear-gradient(135deg, rgba(0, 153, 255, 0.6), rgba(140, 0, 255, 0.6));
-}
-
-.shape-1 {
-  top: 0%;
-  left: 0%;
-  transform: translate(-25%, -25%);
-  transform-origin: center;
-  width: 32rem;
-  height: 32rem;
-}
-.shape-2 {
-  bottom: -40%;
-  right: 15%;
-  width: 40rem;
-  height: 40rem;
-}
-</style>
