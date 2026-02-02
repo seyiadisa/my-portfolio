@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted, useTemplateRef } from 'vue'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import TextPlugin from 'gsap/TextPlugin'
 
 import About from './components/About.vue'
 import Contact from './components/Contact.vue'
@@ -15,6 +17,7 @@ onMounted(() => {
   if (!loaderContainer.value) {
     return null
   }
+  gsap.registerPlugin(ScrollTrigger, TextPlugin)
 
   const tl = gsap.timeline()
 
@@ -40,14 +43,13 @@ onMounted(() => {
       ease: 'expo.inOut',
     })
     .set('#loader-container', { display: 'none' })
-    .set('body', { className: '-=no-scroll' })
     .to('#heroTitle', { opacity: 1, y: 0, duration: 1 }, '-=0.5')
 })
 </script>
 
 <template>
   <div class="max-w-7xl mx-auto space-y-20">
-    <div class="min-h-screen relative">
+    <div class="min-h-screen flex flex-col relative">
       <Navbar />
       <Hero />
     </div>
