@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import gsap from 'gsap'
-import { onMounted } from 'vue'
+import { onMounted, useTemplateRef } from 'vue'
+
+const cyclingText = useTemplateRef('cyclingText')
 
 onMounted(() => {
   const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
@@ -49,38 +51,24 @@ onMounted(() => {
       '-=0.6',
     )
 
-  const roles = ['Full-Stack Developer', 'Creative Technologist', 'AI Integration Specialist']
+  const roles = [
+    'Fullstack Developer',
+    '',
+    'Creative Technologist',
+    '',
+    'AI Integration Specialist',
+    '',
+  ]
 
-  let currentIndex = 0
+  const cycle = gsap.timeline({
+    defaults: { ease: 'power1.inOut' },
+    delay: 4.5,
+    repeat: -1,
+  })
 
-  function cycleText() {
-    gsap.to('#cyclingText', {
-      duration: 0.8,
-      opacity: 0,
-      y: -20,
-      ease: 'power2.in',
-      onComplete: () => {
-        currentIndex = (currentIndex + 1) % roles.length
-        gsap.to('#cyclingText', {
-          duration: 0,
-          text: roles[currentIndex],
-          onComplete: () => {
-            gsap.to('#cyclingText', {
-              duration: 0.8,
-              opacity: 1,
-              y: 0,
-              ease: 'power2.out',
-            })
-          },
-        })
-      },
-    })
-  }
-
-  // Start cycling after initial load
-  setTimeout(() => {
-    setInterval(cycleText, 4000) // Change text every 4 seconds
-  }, 3000) // Wait 3 seconds before starting the cycle
+  roles.forEach((role, i) => {
+    cycle.add(gsap.to(cyclingText.value, { text: { value: role, rtl: i % 2 !== 0 }, duration: 2 }))
+  })
 })
 </script>
 
@@ -94,17 +82,16 @@ onMounted(() => {
 
         <h1
           id="heroTitle"
-          class="font-display text-3xl md:text-5xl lg:text-6xl leading-relaxed mb-8 tracking-tight opacity-0"
+          class="font-display text-3xl md:text-5xl lg:text-6xl mb-8 tracking-tight opacity-0"
         >
           OLUWASEYI<br />ADISA
         </h1>
 
-        <div
+        <p
+          ref="cyclingText"
           id="cyclingText"
-          class="text-lg md:text-xl lg:text-2xl font-display mb-8 opacity-0 text-accent"
-        >
-          Full-Stack Developer
-        </div>
+          class="text-lg md:text-xl h-4 lg:text-2xl font-display mb-8 opacity-0 text-accent"
+        ></p>
 
         <div id="staticDescription" class="space-y-4 max-w-3xl mb-12 opacity-0">
           <p class="leading-relaxed">
@@ -121,7 +108,7 @@ onMounted(() => {
         <div id="ctaContainer" class="flex gap-8 flex-wrap opacity-0">
           <a
             href="#projects"
-            class="group relative inline-block px-10 py-4 border-3 lg:border-none font-medium uppercase tracking-widest text-sm transition-all duration-300 overflow-hidden hover:border-accent"
+            class="group relative inline-block px-10 py-4 border-3 font-medium uppercase tracking-widest text-sm transition-all duration-300 overflow-hidden hover:border-accent"
           >
             <span class="relative z-10 transition-colors duration-300">View Work</span>
             <span
@@ -130,7 +117,7 @@ onMounted(() => {
           </a>
           <a
             href="#contact"
-            class="group relative inline-block px-10 py-4 border-3 lg:border-none border-accent text-accent font-medium uppercase tracking-[0.1em] text-sm transition-all duration-300 overflow-hidden"
+            class="group relative inline-block px-10 py-4 border-3 border-accent text-accent font-medium uppercase tracking-widest text-sm transition-all duration-300 overflow-hidden"
           >
             <span class="relative group-hover:text-foreground z-10 transition-colors duration-300"
               >Get in Touch</span

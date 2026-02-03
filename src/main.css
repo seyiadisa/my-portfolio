@@ -36,5 +36,5 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @apply bg-background text-foreground font-display;
+  @apply bg-background text-foreground font-display border-gray-200 dark:border-gray-700;
 }

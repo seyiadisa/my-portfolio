@@ -3,9 +3,8 @@ import { onMounted, useTemplateRef } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import TextPlugin from 'gsap/TextPlugin'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 
-import About from './components/About.vue'
-import Contact from './components/Contact.vue'
 import Footer from './components/Footer.vue'
 import Hero from './components/Hero.vue'
 import Navbar from './components/Navbar.vue'
@@ -17,7 +16,8 @@ onMounted(() => {
   if (!loaderContainer.value) {
     return null
   }
-  gsap.registerPlugin(ScrollTrigger, TextPlugin)
+
+  gsap.registerPlugin(ScrollTrigger, TextPlugin, ScrollToPlugin)
 
   const tl = gsap.timeline()
 
@@ -44,6 +44,22 @@ onMounted(() => {
     })
     .set('#loader-container', { display: 'none' })
     .to('#heroTitle', { opacity: 1, y: 0, duration: 1 }, '-=0.5')
+
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault()
+
+      const href = anchor.getAttribute('href')
+
+      const target = document.querySelector(href ?? '')
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        })
+      }
+    })
+  })
 })
 </script>
 
@@ -54,16 +70,8 @@ onMounted(() => {
       <Hero />
     </div>
 
-    <section id="about">
-      <About />
-    </section>
-
     <section id="projects">
       <Projects />
-    </section>
-
-    <section id="contact">
-      <Contact />
     </section>
 
     <Footer />
