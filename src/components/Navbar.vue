@@ -2,7 +2,23 @@
 import { ref } from 'vue'
 import { Close, Menu, Moon, Sun } from '../icons'
 
-const isDarkMode = ref(document.documentElement.classList.contains('dark'))
+const LOCAL_STORAGE_KEY = 's_portfolio_theme'
+
+const getInitialTheme = () => {
+  if (typeof localStorage !== 'undefined' && localStorage.getItem(LOCAL_STORAGE_KEY)) {
+    return localStorage.getItem(LOCAL_STORAGE_KEY) === 'dark'
+  }
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+}
+
+const isDarkMode = ref(getInitialTheme())
+
+if (isDarkMode.value) {
+  document.documentElement.classList.add('dark')
+} else {
+  document.documentElement.classList.remove('dark')
+}
+
 const isMenuOpen = ref(false)
 
 const toggleTheme = (event: MouseEvent) => {
@@ -10,16 +26,23 @@ const toggleTheme = (event: MouseEvent) => {
   const y = event.clientY
   const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
 
-  if (!document.startViewTransition) {
-    document.documentElement.classList.toggle('dark')
+  const toggle = () => {
     isDarkMode.value = !isDarkMode.value
+    if (isDarkMode.value) {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem(LOCAL_STORAGE_KEY, 'dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem(LOCAL_STORAGE_KEY, 'light')
+    }
+  }
+
+  if (!document.startViewTransition) {
+    toggle()
     return
   }
 
-  const transition = document.startViewTransition(() => {
-    document.documentElement.classList.toggle('dark')
-    isDarkMode.value = !isDarkMode.value
-  })
+  const transition = document.startViewTransition(toggle)
 
   transition.ready.then(() => {
     document.documentElement.animate(
