@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Moon, Sun } from '../icons'
+import { Close, Menu, Moon, Sun } from '../icons'
 
 const isDarkMode = ref(document.documentElement.classList.contains('dark'))
 const isMenuOpen = ref(false)
@@ -37,7 +37,7 @@ const toggleTheme = (event: MouseEvent) => {
 </script>
 
 <template>
-  <header class="w-full px-6 py-6 flex justify-end items-center relative">
+  <header class="w-full px-6 py-4 md:py-6 flex justify-end items-center relative">
     <div class="flex items-center gap-2 md:gap-12">
       <nav class="hidden md:flex items-center gap-8 text-lg font-medium">
         <a href="#about">About</a>
@@ -51,32 +51,8 @@ const toggleTheme = (event: MouseEvent) => {
       </button>
 
       <button @click="isMenuOpen = !isMenuOpen" class="md:hidden p-2" aria-label="Toggle menu">
-        <svg
-          v-if="!isMenuOpen"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-8 h-8"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-          />
-        </svg>
-        <svg
-          v-else
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-8 h-8"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
+        <Close v-if="!isMenuOpen" />
+        <Menu v-else />
       </button>
     </div>
 
