@@ -9,6 +9,7 @@ import Footer from './components/Footer.vue'
 import Hero from './components/Hero.vue'
 import Navbar from './components/Navbar.vue'
 import Projects from './components/Projects.vue'
+import About from './components/About.vue'
 
 const loaderContainer = useTemplateRef('loader-container')
 
@@ -65,25 +66,23 @@ onMounted(() => {
 
 <template>
   <div class="max-w-7xl mx-auto space-y-20">
-    <div class="min-h-screen flex flex-col relative">
+    <div class="min-h-screen flex flex-col">
       <Navbar />
       <Hero />
     </div>
 
-    <section id="projects">
-      <Projects />
-    </section>
-
+    <About />
+    <Projects />
     <Footer />
   </div>
 
   <div
     ref="loader-container"
     id="loader-container"
-    class="fixed inset-0 z-100 flex flex-col items-center justify-center bg-background"
+    class="fixed inset-0 z-100 overflow-hidden w-screen h-screen flex flex-col items-center justify-center bg-background"
   >
     <div
-      class="loader-grid absolute inset-0 grid grid-cols-5 z-1 *:bg-accent *:scale-y-100 *:origin-bottom"
+      class="loader-grid absolute inset-0 grid w-full grid-cols-5 gap-0 z-1 *:bg-accent *:scale-y-100 *:origin-bottom"
     >
       <div class="loader-column"></div>
       <div class="loader-column"></div>

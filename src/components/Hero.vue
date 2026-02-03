@@ -52,11 +52,17 @@ onMounted(() => {
     )
 
   const roles = [
-    'Fullstack Developer',
+    'Software Architect',
     '',
-    'Creative Technologist',
+    'Product Engineer',
     '',
-    'AI Integration Specialist',
+    'Systems Designer',
+    '',
+    'Solutions Architect',
+    '',
+    'AI Engineer',
+    '',
+    'Fullstack Engineer',
     '',
   ]
 
@@ -93,16 +99,13 @@ onMounted(() => {
           class="text-lg md:text-xl h-4 lg:text-2xl font-display mb-8 opacity-0 text-accent"
         ></p>
 
-        <div id="staticDescription" class="space-y-4 max-w-3xl mb-12 opacity-0">
-          <p class="leading-relaxed">
-            I create intelligent, user-focused applications that merge design, scalability, and
-            performance into meaningful digital experiences.
+        <div id="staticDescription" class="space-y-4 max-w-3xl mb-12 opacity-0 *:leading-relaxed">
+          <p>I build intelligent systems that scale.</p>
+          <p>
+            From modern APIs to AI-driven interfaces, I bridge the gap between sophisticated design
+            and high-performance engineering.
           </p>
-          <p class="leading-relaxed">
-            I build AI-powered systems and modern APIs that help businesses and ideas scale
-            confidently.
-          </p>
-          <p class="leading-relaxed">I don't just write code — I craft solutions that last.</p>
+          <p>I don't just write code. I craft solutions that last.</p>
         </div>
 
         <div id="ctaContainer" class="flex gap-8 flex-wrap opacity-0">

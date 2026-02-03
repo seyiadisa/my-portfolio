@@ -2,6 +2,7 @@
 import { computed, onMounted } from 'vue'
 import type { Project } from '../types/project'
 import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const props = defineProps<Project>()
 
@@ -10,21 +11,23 @@ const formattedIndex = computed(() => {
   return i < 10 ? `0${i}` : i
 })
 
-onMounted(() => {
-  gsap.utils.toArray<HTMLElement>('.project-card').forEach((card, index) => {
-    gsap.to(card, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      delay: index * 0.2,
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      },
-    })
-  })
-})
+// onMounted(() => {
+//   gsap.registerPlugin(ScrollTrigger)
+
+//   gsap.utils.toArray<HTMLElement>('.project-card').forEach((card, index) => {
+//     gsap.to(card, {
+//       opacity: 1,
+//       y: 0,
+//       duration: 1,
+//       delay: index * 0.2,
+//       scrollTrigger: {
+//         trigger: card,
+//         start: 'top 80%',
+//         toggleActions: 'play none none none',
+//       },
+//     })
+//   })
+// })
 </script>
 
 <template>
