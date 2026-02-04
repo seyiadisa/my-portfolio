@@ -32,7 +32,7 @@ const formattedIndex = computed(() => {
 
 <template>
   <article
-    class="project-card group border-3 opacity-0 transition-all duration-400 overflow-hidden"
+    class="project-card group border-3 transition-all duration-400 overflow-hidden"
   >
     <div class="w-full max-h-80 h-auto border-b-3 flex items-center justify-center overflow-hidden">
       <img :src="props.imageUrl" :alt="props.title" />
