@@ -42,9 +42,9 @@
           href="https://x.com/SeyiAdisa1"
           target="_blank"
           rel="noopener noreferrer"
-          class="group px-8 py-4 border-2 font-medium uppercase tracking-widest text-sm transition-all duration-300 hover:bg-accent hover:text-white hover:border-accent"
+          class="group px-8 py-4 border-2 font-[sans-serif] font-medium uppercase tracking-widest text-sm transition-all duration-300 hover:bg-accent hover:text-white hover:border-accent"
         >
-          X
+          &#x1d54f;
         </a>
       </div>
       <p class="text-sm">&copy; 2026 All rights reserved</p>
