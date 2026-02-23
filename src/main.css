@@ -42,3 +42,23 @@ html {
   -moz-osx-font-smoothing: grayscale;
   @apply bg-background text-foreground font-body;
 }
+
+.text-outline {
+  -webkit-text-stroke: 3px currentColor;
+  color: transparent;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--accent);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}

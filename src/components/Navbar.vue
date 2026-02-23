@@ -60,22 +60,49 @@ const toggleTheme = (event: MouseEvent) => {
 </script>
 
 <template>
-  <header class="w-full px-6 py-4 md:py-6 flex justify-end items-center relative">
-    <div class="flex items-center gap-2 md:gap-12">
-      <nav class="hidden md:flex items-center gap-8 text-lg font-medium">
-        <a href="#about">About</a>
-        <a href="#projects">My Work</a>
-        <a href="#contact">Contact</a>
-      </nav>
+  <header
+    class="w-full px-6 py-5 md:py-6 flex justify-between items-center relative border-b border-white/10"
+  >
+    <div></div>
 
-      <button type="button" @click="toggleTheme" class="p-4">
+    <nav
+      class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-foreground/70"
+    >
+      <a href="#" class="nav-link relative hover:text-foreground transition-colors">Home</a>
+      <a href="#about" class="nav-link relative hover:text-foreground transition-colors">About</a>
+      <a href="#projects" class="nav-link relative hover:text-foreground transition-colors"
+        >Projects</a
+      >
+      <a href="#contact" class="nav-link relative hover:text-foreground transition-colors"
+        >Contact</a
+      >
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <button
+        type="button"
+        @click="toggleTheme"
+        class="p-2 text-foreground/60 hover:text-foreground transition-colors"
+        aria-label="Toggle theme"
+      >
         <Sun v-if="!isDarkMode" />
         <Moon v-else />
       </button>
 
-      <button @click="isMenuOpen = !isMenuOpen" class="md:hidden p-2" aria-label="Toggle menu">
-        <Close v-if="!isMenuOpen" />
-        <Menu v-else />
+      <a
+        href="#contact"
+        class="cta-btn hidden md:inline-block px-5 py-2 border border-accent text-accent font-mono text-xs uppercase tracking-widest hover:bg-accent hover:text-background transition-all duration-200"
+      >
+        Hire Me
+      </a>
+
+      <button
+        @click="isMenuOpen = !isMenuOpen"
+        class="md:hidden p-2 text-foreground"
+        aria-label="Toggle menu"
+      >
+        <Menu v-if="!isMenuOpen" />
+        <Close v-else />
       </button>
     </div>
 
@@ -89,11 +116,35 @@ const toggleTheme = (event: MouseEvent) => {
     >
       <div
         v-if="isMenuOpen"
-        class="absolute top-full right-0 w-full bg-background border-b border-accent/20 p-6 flex flex-col items-center gap-6 md:hidden z-50 shadow-lg"
+        class="absolute top-full left-0 right-0 bg-background border-b border-white/10 p-6 flex flex-col items-center gap-6 md:hidden z-50"
       >
-        <a href="#about" @click="isMenuOpen = false" class="text-lg font-medium">About</a>
-        <a href="#projects" @click="isMenuOpen = false" class="text-lg font-medium">My Work</a>
-        <a href="#contact" @click="isMenuOpen = false" class="text-lg font-medium">Contact</a>
+        <a href="#" @click="isMenuOpen = false" class="font-mono text-sm uppercase tracking-widest"
+          >Home</a
+        >
+        <a
+          href="#about"
+          @click="isMenuOpen = false"
+          class="font-mono text-sm uppercase tracking-widest"
+          >About</a
+        >
+        <a
+          href="#projects"
+          @click="isMenuOpen = false"
+          class="font-mono text-sm uppercase tracking-widest"
+          >Projects</a
+        >
+        <a
+          href="#contact"
+          @click="isMenuOpen = false"
+          class="font-mono text-sm uppercase tracking-widest"
+          >Contact</a
+        >
+        <a
+          href="#contact"
+          @click="isMenuOpen = false"
+          class="px-6 py-2 border border-accent text-accent font-mono text-xs uppercase tracking-widest"
+          >Hire Me</a
+        >
       </div>
     </Transition>
   </header>
