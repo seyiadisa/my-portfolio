@@ -11,6 +11,7 @@ const getInitialTheme = () => {
   return window.matchMedia('(prefers-color-scheme: dark)').matches
 }
 
+const isMenuOpen = ref(false)
 const isDarkMode = ref(getInitialTheme())
 
 if (isDarkMode.value) {
@@ -18,8 +19,6 @@ if (isDarkMode.value) {
 } else {
   document.documentElement.classList.remove('dark')
 }
-
-const isMenuOpen = ref(false)
 
 const toggleTheme = (event: MouseEvent) => {
   const x = event.clientX
@@ -64,7 +63,7 @@ const toggleTheme = (event: MouseEvent) => {
     <nav
       class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-foreground/75"
     >
-      <a href="#" class="nav-link relative hover:text-foreground transition-colors">Home</a>
+      <!-- <a href="#" class="nav-link relative hover:text-foreground transition-colors">Home</a> -->
       <a href="#about" class="nav-link relative hover:text-foreground transition-colors">About</a>
       <a href="#projects" class="nav-link relative hover:text-foreground transition-colors"
         >Projects</a
@@ -114,9 +113,9 @@ const toggleTheme = (event: MouseEvent) => {
         v-if="isMenuOpen"
         class="absolute top-full left-0 right-0 bg-background border-b border-white/10 p-6 flex flex-col items-center gap-6 md:hidden z-50"
       >
-        <a href="#" @click="isMenuOpen = false" class="font-mono text-sm uppercase tracking-widest"
+        <!-- <a href="#" @click="isMenuOpen = false" class="font-mono text-sm uppercase tracking-widest"
           >Home</a
-        >
+        > -->
         <a
           href="#about"
           @click="isMenuOpen = false"
