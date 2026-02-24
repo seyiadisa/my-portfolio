@@ -1,135 +1,59 @@
 <script setup lang="ts">
 import gsap from 'gsap'
-import { onMounted, useTemplateRef } from 'vue'
-
-const cyclingText = useTemplateRef('cyclingText')
+import { onMounted } from 'vue'
 
 onMounted(() => {
-  const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
-  tl.to('#heroLabel', {
-    opacity: 1,
-    y: 0,
-    duration: 1,
-    delay: 0.3,
-  })
-    .to(
-      '#heroTitle',
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        stagger: 0.1,
-      },
-      '-=0.6',
-    )
-    .to(
-      '#cyclingText',
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-      },
-      '-=0.8',
-    )
-    .to(
-      '#staticDescription',
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-      },
-      '-=0.6',
-    )
-    .to(
-      '#ctaContainer',
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-      },
-      '-=0.6',
-    )
-
-  const roles = [
-    'Software Architect',
-    '',
-    'Product Engineer',
-    '',
-    'Systems Designer',
-    '',
-    'Solutions Architect',
-    '',
-    'AI Engineer',
-    '',
-    'Fullstack Engineer',
-    '',
-  ]
-
-  const cycle = gsap.timeline({
-    defaults: { ease: 'power1.inOut' },
-    delay: 4.5,
-    repeat: -1,
-  })
-
-  roles.forEach((role, i) => {
-    cycle.add(gsap.to(cyclingText.value, { text: { value: role, rtl: i % 2 !== 0 }, duration: 2 }))
-  })
+  tl.from('#hero-badge', { y: 12, opacity: 0, duration: 0.5 })
+    .from('#hero-title-solid', { y: 50, opacity: 0, duration: 0.7 }, '-=0.2')
+    .from('#hero-title-outline', { y: 50, opacity: 0, duration: 0.7 }, '-=0.5')
+    .from('#hero-desc', { y: 20, opacity: 0, duration: 0.6 }, '-=0.3')
+    .from('#hero-ctas', { y: 20, opacity: 0, duration: 0.5 }, '-=0.3')
 })
 </script>
 
 <template>
-  <section class="flex flex-1 items-center relative px-4 md:px-16">
-    <div class="max-w-7xl mx-auto w-full">
-      <div id="heroContent" class="w-full">
-        <div id="heroLabel" class="text-sm tracking-[0.2em] uppercase mb-8 font-medium opacity-0">
-          Software Engineer
-        </div>
-
-        <h1
-          id="heroTitle"
-          class="font-display text-3xl md:text-5xl lg:text-6xl mb-8 tracking-tight opacity-0"
+  <section class="flex flex-1 items-center justify-center relative px-6 md:px-16 py-20">
+    <div class="max-w-3xl mx-auto w-full text-center">
+      <h1 class="font-display font-black uppercase leading-none mb-2">
+        <span
+          id="hero-title-solid"
+          class="block text-6xl md:text-8xl lg:text-[9rem] tracking-tight text-foreground leading-none"
         >
-          OLUWASEYI<br />ADISA
-        </h1>
+          OLUWASEYI ADISA
+        </span>
+      </h1>
+      <p
+        id="hero-title-outline"
+        class="block text-3xl md:text-4xl lg:text-5xl tracking-tight leading-none font-medium text-accent"
+      >
+        FULLSTACK DEVELOPER
+      </p>
 
-        <p
-          ref="cyclingText"
-          id="cyclingText"
-          class="text-lg md:text-xl h-4 lg:text-2xl font-display mb-8 opacity-0 text-accent"
-        ></p>
+      <p
+        id="hero-desc"
+        class="mt-10 mb-10 text-foreground/75 max-w-xl mx-auto leading-relaxed text-sm md:text-base"
+      >
+        Engineering high-performance digital experiences. I specialize in building
+        <span class="text-foreground font-medium">resilient architectures</span> and
+        <span class="text-foreground font-medium">futuristic interfaces</span>.
+      </p>
 
-        <div id="staticDescription" class="space-y-4 max-w-3xl mb-12 opacity-0 *:leading-relaxed">
-          <p>I build intelligent systems that scale.</p>
-          <p>
-            From modern APIs to AI-driven interfaces, I bridge the gap between sophisticated design
-            and high-performance engineering.
-          </p>
-          <p>I don't just write code. I craft solutions that last.</p>
-        </div>
-
-        <div id="ctaContainer" class="flex gap-8 flex-wrap opacity-0">
-          <a
-            href="#projects"
-            class="group relative inline-block px-10 py-4 border-3 font-medium uppercase tracking-widest text-sm transition-all duration-300 overflow-hidden hover:border-accent"
-          >
-            <span class="relative z-10 transition-colors duration-300">View Work</span>
-            <span
-              class="absolute inset-0 bg-accent w-0 group-hover:w-full transition-all duration-300"
-            ></span>
-          </a>
-          <a
-            href="#contact"
-            class="group relative inline-block px-10 py-4 border-3 border-accent text-accent font-medium uppercase tracking-widest text-sm transition-all duration-300 overflow-hidden"
-          >
-            <span class="relative group-hover:text-foreground z-10 transition-colors duration-300"
-              >Get in Touch</span
-            >
-            <span
-              class="absolute inset-0 bg-accent w-0 group-hover:w-full transition-all duration-300"
-            ></span>
-          </a>
-        </div>
+      <div id="hero-ctas" class="flex items-center justify-center gap-4 flex-wrap">
+        <a
+          href="#projects"
+          class="cta-btn inline-flex items-center gap-2 px-8 py-3 bg-accent text-background font-mono text-xs uppercase tracking-widest font-bold hover:bg-accent/90 transition-all duration-200"
+        >
+          View Projects
+          <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
+        </a>
+        <a
+          href="#contact"
+          class="cta-btn inline-flex items-center gap-2 px-8 py-3 border border-foreground/30 text-foreground font-mono text-xs uppercase tracking-widest hover:border-foreground transition-all duration-200"
+        >
+          Get In Touch
+        </a>
       </div>
     </div>
   </section>
