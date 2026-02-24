@@ -5,8 +5,7 @@ import { onMounted } from 'vue'
 onMounted(() => {
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
-  tl.from('#hero-badge', { y: 12, opacity: 0, duration: 0.5 })
-    .from('#hero-title-solid', { y: 50, opacity: 0, duration: 0.7 }, '-=0.2')
+  tl.from('#hero-title-solid', { y: 50, opacity: 0, duration: 0.7 }, '-=0.2')
     .from('#hero-title-outline', { y: 50, opacity: 0, duration: 0.7 }, '-=0.5')
     .from('#hero-desc', { y: 20, opacity: 0, duration: 0.6 }, '-=0.3')
     .from('#hero-ctas', { y: 20, opacity: 0, duration: 0.5 }, '-=0.3')
