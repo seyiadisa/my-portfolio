@@ -60,13 +60,9 @@ const toggleTheme = (event: MouseEvent) => {
 </script>
 
 <template>
-  <header
-    class="w-full px-6 py-5 md:py-6 flex justify-between items-center relative border-b border-white/10"
-  >
-    <div></div>
-
+  <header class="w-full h-22 px-6 py-5 md:py-6 relative border-b border-white/10">
     <nav
-      class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-foreground/70"
+      class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-foreground/70"
     >
       <a href="#" class="nav-link relative hover:text-foreground transition-colors">Home</a>
       <a href="#about" class="nav-link relative hover:text-foreground transition-colors">About</a>
@@ -78,7 +74,7 @@ const toggleTheme = (event: MouseEvent) => {
       >
     </nav>
 
-    <div class="flex items-center gap-4">
+    <div class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-4">
       <button
         type="button"
         @click="toggleTheme"
