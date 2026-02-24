@@ -62,7 +62,7 @@ const toggleTheme = (event: MouseEvent) => {
 <template>
   <header class="w-full h-22 px-6 py-5 md:py-6 relative border-b border-white/10">
     <nav
-      class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-foreground/70"
+      class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-foreground/75"
     >
       <a href="#" class="nav-link relative hover:text-foreground transition-colors">Home</a>
       <a href="#about" class="nav-link relative hover:text-foreground transition-colors">About</a>
@@ -78,7 +78,7 @@ const toggleTheme = (event: MouseEvent) => {
       <button
         type="button"
         @click="toggleTheme"
-        class="p-2 text-foreground/60 hover:text-foreground transition-colors"
+        class="p-2 text-foreground/75 hover:text-foreground transition-colors"
         aria-label="Toggle theme"
       >
         <Sun v-if="!isDarkMode" />
