@@ -16,19 +16,25 @@ const projects: Omit<Project, 'index'>[] = [
 </script>
 
 <template>
-  <section id="projects" class="py-32 border-t-3 px-4 md:px-16">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex justify-between items-baseline mb-16 gap-8 flex-wrap">
-        <h2 class="section-title font-display text-5xl md:text-6xl lg:text-7xl tracking-tight">
-          FEATURED PROJECTS
+  <section id="projects" class="py-20 border-t border-white/10 px-6 md:px-16">
+    <div class="max-w-6xl mx-auto">
+      <div class="section-heading mb-12">
+        <span class="font-mono text-accent text-sm tracking-widest">02.</span>
+        <h2
+          class="font-display font-black text-4xl md:text-5xl lg:text-6xl uppercase tracking-tight text-foreground"
+        >
+          Projects
         </h2>
+        <p class="font-mono text-xs uppercase tracking-widest text-foreground/75 mt-1">
+          Selected Architectural Works
+        </p>
       </div>
     </div>
 
-    <div class="w-full">
+    <div class="max-w-6xl mx-auto space-y-px">
       <ProjectCard
-        :key="i"
         v-for="(project, i) in projects"
+        :key="i"
         :index="i"
         :title="project.title"
         :description="project.description"
