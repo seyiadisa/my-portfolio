@@ -32,11 +32,14 @@ onMounted(() => {
 
       <p
         id="hero-desc"
-        class="mt-10 mb-10 text-foreground/75 max-w-xl mx-auto leading-relaxed text-sm md:text-base"
+        class="mt-10 mb-10 text-foreground/75 max-w-xl mx-auto leading-relaxed text-sm md:text-base [&_span]:block [&_span]:mb-2"
       >
-        Engineering high-performance digital experiences. I specialize in building
-        <span class="text-foreground font-medium">resilient architectures</span> and
-        <span class="text-foreground font-medium">futuristic interfaces</span>.
+        <span> I build intelligent systems that scale. </span>
+        <span>
+          From modern APIs to AI-driven interfaces, I bridge the gap between sophisticated design
+          and high-performance engineering.
+        </span>
+        <span> I don't just write code. I craft solutions that last. </span>
       </p>
 
       <div id="hero-ctas" class="flex items-center justify-center gap-4 flex-wrap">
