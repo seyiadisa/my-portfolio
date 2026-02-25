@@ -28,33 +28,33 @@ onMounted(() => {
 
 <template>
   <article
-    class="project-card grid md:grid-cols-2 border border-white/10 overflow-hidden transition-colors duration-300 hover:border-white/25"
-    :class="index % 2 === 1 ? 'md:[direction:rtl]' : ''"
+    class="project-card grid overflow-hidden border border-foreground/10 transition-colors duration-300 hover:border-foreground/30 md:grid-cols-2"
+    :class="props.index % 2 === 1 ? 'md:[direction:rtl]' : ''"
   >
     <div
-      class="relative bg-white/5 min-h-64 md:min-h-80 overflow-hidden"
-      :class="index % 2 === 1 ? '[direction:ltr]' : ''"
+      class="relative min-h-64 overflow-hidden bg-foreground/5 md:min-h-80"
+      :class="props.index % 2 === 1 ? '[direction:ltr]' : ''"
     >
       <img :src="props.imageUrl" :alt="props.title" class="w-full h-full object-cover" />
     </div>
 
     <div
-      class="p-8 md:p-10 bg-[#0d1117] flex flex-col justify-center"
-      :class="index % 2 === 1 ? '[direction:ltr]' : ''"
+      class="flex flex-col justify-center bg-background p-8 md:p-10"
+      :class="props.index % 2 === 1 ? '[direction:ltr]' : ''"
     >
       <h3 class="font-display font-black text-2xl md:text-3xl uppercase text-foreground mb-3">
         {{ props.title }}
       </h3>
 
-      <p class="text-foreground/75 text-sm leading-relaxed mb-6">
+      <p class="mb-6 text-sm leading-relaxed text-muted">
         {{ props.description }}
       </p>
 
       <div class="flex flex-wrap gap-2 mb-8">
         <span
-          v-for="(tech, i) in technologies"
+          v-for="(tech, i) in props.technologies"
           :key="i"
-          class="px-3 py-1 border border-white/20 text-foreground/75 text-xs uppercase tracking-widest font-mono"
+          class="border border-foreground/20 px-3 py-1 font-mono text-xs uppercase tracking-widest text-muted"
         >
           {{ tech }}
         </span>
