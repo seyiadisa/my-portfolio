@@ -3,6 +3,8 @@ import type { Project } from '../types/project'
 import ProjectCard from './ProjectCard.vue'
 
 import AudiophileImg from '../assets/images/audiophile.jpg'
+import LegalWDImg from '../assets/images/legalwd.webp'
+import TitaarImg from '../assets/images/titaar.svg'
 
 const projects: Omit<Project, 'index'>[] = [
   {
@@ -11,6 +13,20 @@ const projects: Omit<Project, 'index'>[] = [
     url: 'https://audiophile-hub.vercel.app',
     imageUrl: AudiophileImg,
     technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind', 'FastAPI'],
+  },
+  {
+    title: 'Legal WatchDog',
+    description: 'A web application for monitoring policy updates. A Team project',
+    url: 'https://legalwatch.dog',
+    imageUrl: LegalWDImg,
+    technologies: ['Vue.js', 'Vite', 'TypeScript', 'Tailwind'],
+  },
+  {
+    title: 'Titaar',
+    description: 'A marketplace for creators.',
+    url: 'https://titaar.com',
+    imageUrl: TitaarImg,
+    technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
   },
 ]
 </script>
@@ -31,7 +47,7 @@ const projects: Omit<Project, 'index'>[] = [
       </div>
     </div>
 
-    <div class="max-w-6xl mx-auto space-y-px">
+    <div class="max-w-6xl mx-auto space-y-12">
       <ProjectCard
         v-for="(project, i) in projects"
         :key="i"

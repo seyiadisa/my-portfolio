@@ -5,41 +5,42 @@ import gsap from 'gsap'
 
 const props = defineProps<Project>()
 
-onMounted(() => {
-  gsap.from('.project-card', {
-    y: 50,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: 'power3.out',
-    scrollTrigger: { trigger: '#projects', start: 'top 75%', once: true },
-  })
+// onMounted(() => {
+//   gsap.from('.project-card', {
+//     y: 50,
+//     opacity: 0,
+//     duration: 0.8,
+//     stagger: 0.2,
+//     ease: 'power3.out',
+//     scrollTrigger: { trigger: '#projects', start: 'top 75%', once: true },
+//   })
 
-  document.querySelectorAll<HTMLElement>('.project-card').forEach((card) => {
-    card.addEventListener('mouseenter', () => {
-      gsap.to(card, { y: -6, duration: 0.3, ease: 'power2.out' })
-    })
-    card.addEventListener('mouseleave', () => {
-      gsap.to(card, { y: 0, duration: 0.35, ease: 'power2.inOut' })
-    })
-  })
-})
+//   document.querySelectorAll<HTMLElement>('.project-card').forEach((card) => {
+//     card.addEventListener('mouseenter', () => {
+//       gsap.to(card, { y: -6, duration: 0.3, ease: 'power2.out' })
+//     })
+//     card.addEventListener('mouseleave', () => {
+//       gsap.to(card, { y: 0, duration: 0.35, ease: 'power2.inOut' })
+//     })
+//   })
+// })
 </script>
 
 <template>
   <article
-    class="project-card grid overflow-hidden border border-foreground/10 transition-colors duration-300 hover:border-foreground/30 md:grid-cols-2"
+    class="project-card grid overflow-hidden border border-foreground/10 transition-colors duration-300 hover:border-foreground/30 md:grid-cols-2 max-h-160 md:max-h-80"
     :class="props.index % 2 === 1 ? 'md:[direction:rtl]' : ''"
   >
     <div
       class="relative min-h-64 overflow-hidden bg-foreground/5 md:min-h-80"
       :class="props.index % 2 === 1 ? '[direction:ltr]' : ''"
     >
+      <div class="absolute inset-0 bg-black/10"></div>
       <img :src="props.imageUrl" :alt="props.title" class="w-full h-full object-cover" />
     </div>
 
     <div
-      class="flex flex-col justify-center bg-background p-8 md:p-10"
+      class="flex flex-col justify-center bg-background p-8 md:p-10 h-80"
       :class="props.index % 2 === 1 ? '[direction:ltr]' : ''"
     >
       <h3 class="font-display font-black text-2xl md:text-3xl uppercase text-foreground mb-3">
