@@ -20,14 +20,14 @@ onMounted(() => {
     scrollTrigger: { trigger: '#contact', start: 'top 80%', once: true },
   })
 
-  gsap.from('.social-icon', {
-    scale: 0.8,
-    opacity: 0,
-    duration: 0.4,
-    stagger: 0.08,
-    ease: 'back.out(1.5)',
-    scrollTrigger: { trigger: '#contact', start: 'top 75%', once: true },
-  })
+  // gsap.from('.social-icon', {
+  //   scale: 0.8,
+  //   opacity: 0,
+  //   duration: 0.4,
+  //   stagger: 0.08,
+  //   ease: 'back.out(1.5)',
+  //   scrollTrigger: { trigger: '#contact', start: 'top 75%', once: true },
+  // })
 
   document.querySelectorAll<HTMLElement>('.social-icon').forEach((icon) => {
     icon.addEventListener('mouseenter', () => {
