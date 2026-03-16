@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+// import { onMounted } from 'vue'
 import type { Project } from '../types/project'
-import gsap from 'gsap'
+// import gsap from 'gsap'
 
 const props = defineProps<Project>()
 
